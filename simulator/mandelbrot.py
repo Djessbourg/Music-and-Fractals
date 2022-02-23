@@ -32,7 +32,7 @@ for y in range(HAUTEUR):
       screen.set_at((x, y), (0, 0, 0)) # On colore le pixel en noir -> code RGB : (0,0,0)
     else:
       screen.set_at((x, y), ((3 * n) % 256, (1 * n) % 256, (10 * n) % 256)) # On colore le pixel en blanc -> code RGB : (255,255,255)
-pygame.display.flip() # Mise à jour et rafraîchissement de la fenêtre graphique pour affichage
+    pygame.display.flip() # Mise à jour et rafraîchissement de la fenêtre graphique pour affichage
 # Boucle infinie permettant d'afficher à l'écran la fenêtre graphique
 # Sans ça, la fenêtre apparaît et disparaît aussitôt
 loop = True
