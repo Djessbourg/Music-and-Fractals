@@ -38,10 +38,10 @@ for y in range (0,H):
         while abs(Xn)**2 < 4 and n < MAX_ITERATION :
             Xn = f(Xn ,C)
             n = n + 1
-    if n == MAX_ITERATION:
-        screen.set_at((x, y), (0, 0, 0))
-    else :
-        screen.set_at((x, y), ((3 * n) % 256, (1 * n) % 256, (10 * n) % 256))
+        if n == MAX_ITERATION:
+            screen.set_at((x, y), (0, 0,0))
+        else :
+            screen.set_at((x, y), ((3 * n) % 256, (1 * n) % 256, (10 * n) % 256))
 pg.display.flip()
 print("okokok")
 loop = True
