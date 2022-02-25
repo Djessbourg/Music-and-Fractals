@@ -12,6 +12,7 @@ class Fract:
         name : str                               # nom de la fractale
         coord : list[int]                        # positions des extremums du plan sous la form [XMIN,XMAX,YMIN,YMAX]
         julia : int                              # indique le type de fractale ( 0 = type Mandelbrot et  1 = type julia)
+        c : complex                              # donne le départ d'un ensemble de julia
 
 class Fract_manager:
     def __init__(self) :
@@ -19,8 +20,8 @@ class Fract_manager:
         self.fracts = dict()
         self.frac_register([500,500],lambda z,c : z**2 +c ,"basic","Mandelbrot",[-2, +0.5, -1.25, +1.25],0)
 
-    def frac_register(self, size, eq, color, name, coord,julia):
-        self.fracts[name] = Fract(size, eq, color, name, coord,julia)
+    def frac_register(self, size, eq, color, name, coord,julia, c = complex (0,0)):
+        self.fracts[name] = Fract(size, eq, color, name, coord,julia,c)
 
     def switch_fract(self,name):
         'change la fractale en cours'
@@ -40,25 +41,25 @@ class Fract_manager:
         f = self.get_eq
         C = self.get_coord()
         S = self.get_size()
+        c = self.get_c()
         cx = C[0] + (x/S[0]) * (C[1] - C[0])
         cy = -1*(C[2] +(y/S[1]) * (C[3] - C[2]))
-        if Julia == 0 :
-            C = complex (cx,cy)
+        if Julia == 0 :                                            # si la fractale est de type Mandelbrot
+            c = complex (cx,cy)
             Xn = complex(0,0)
             n = 0
             while abs(Xn)**2 < NORME and n < MAX_ITERATION :
-                Xn = f(Xn ,C)
+                Xn = f(Xn ,c)
                 n = n + 1
             if n == MAX_ITERATION:
                 return 1
             else :
                 return 0
-        if Julia == 1 :
-            C = complex (cx,cy)
-            Xn = complex (cx,cy)
+        if Julia == 1 :                                            # si la fractale est de type julia
+            Xn = complex (cx,cy)                                   # pas la même initialisation que pour une fractale de type Mandelbrot
             n = 0
             while abs(Xn)**2 < NORME and n < MAX_ITERATION :
-                Xn = f(Xn ,C)
+                Xn = f(Xn ,c)
                 n = n + 1
             if n == MAX_ITERATION:
                 return 1
@@ -102,3 +103,7 @@ class Fract_manager:
     def get_julia(self):
         'renvoie l entier id de julia'
         return self.get_fract().julia
+
+    def get_c(self):
+        'renvoie la valeur de c'
+        return self.get_fract().c
