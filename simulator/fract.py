@@ -19,7 +19,7 @@ class Fract_manager:
         self.currentfract = "Mandelbrot"
         self.fracts = dict()
         self.frac_register([500,500],lambda z,c : z**2 +c ,"basic","Mandelbrot",[-2, +0.5, -1.25, +1.25],0)
-        self.frac_register([500,500],lambda z,c :18*x**4 -36*x**3 -(7/3)* x**2 + c ,"basic","Bouglé",[-0.25, 0.25, -0.25, +0.25],0)
+        self.frac_register([500,500],lambda z,c :18*z**4 -36*z**3 -(7/3)* z**2 + c ,"basic","Bouglé",[-0.25, 0.25, -0.25, +0.25],0)
 
     def frac_register(self, size, eq, color, name, coord,julia, c = complex (0,0)):
         self.fracts[name] = Fract(size, eq, color, name, coord,julia,c)

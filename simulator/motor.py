@@ -23,30 +23,27 @@ class Motor :
         screen.blit(window,(0,0))
         "color = self.color"
         for y in range (size[0]):
-            print("il y a pas d erreur ici")
             for x in range (size[1]):
                 L = f.is_in(x,y)
-                print (L)
                 if L[0] == True :
                     window.set_at((x, y), (0, 0,0))
                 if not(L[0]) == True :
-                    window.set_at((x, y), ((3 * L[1]) % 256, (1 * L[1]) % 256, (10 * L[1]) % 256)) #TO DO: créer différents modes de colorisation
+                    window.set_at((x, y), ((3 * L[1]) % 256, (1 * L[1]) % 256, (10* L[1]) % 256)) #TO DO: créer différents modes de colorisation
                 pg.display.flip()
 
     def run(self):
         """Boucle principale"""
-        "clock = pg.time.Clock()"
         self.draw_fract()
         self.is_running = True
 
         while self.is_running:
-            "pg.display.flip() " # Mise à jour de l'écran
-
             # Gestion des évènements
             for event in pg.event.get():
                 if event.type == pg.QUIT: # Ferme le jeu
                     self.restart = False
                     self.is_running = False
-            "clock.tick(60)"  # Attente jusqu'à la prochaine image
+                if event.type == pg.MOUSEBUTTONUP:
+                    pos = pg.mouse.get_pos()
+                    ## TODO: envoyer les coordonées dans une fonction sonore
 
         self.quit_motor() # Fermeture du jeu
