@@ -36,7 +36,7 @@ class Fract_manager:
         else :
             return eq(eval(c,n-1),c)
 
-    def is_in(self,x,y,MAX_ITERATION = 100, NORME = 4):
+    def is_in(self,x,y,MAX_ITERATION = 20, NORME = 4):
         'détermine si un point de coordonées pygame x y est dans la partie convergente de la fractale'
         Julia = self.get_julia
         f = self.get_eq
