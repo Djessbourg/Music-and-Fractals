@@ -38,8 +38,8 @@ class Fract_manager:
 
     def is_in(self,x,y,MAX_ITERATION = 20, NORME = 4):
         'détermine si un point de coordonées pygame x y est dans la partie convergente de la fractale'
-        Julia = self.get_julia
-        f = self.get_eq
+        Julia = self.get_julia()
+        eq = self.get_eq()
         C = self.get_coord()
         S = self.get_size()
         c = self.get_c()
@@ -50,22 +50,22 @@ class Fract_manager:
             Xn = complex(0,0)
             n = 0
             while abs(Xn)**2 < NORME and n < MAX_ITERATION :
-                Xn = f(Xn ,c)
+                Xn = eq(Xn ,c)
                 n = n + 1
             if n == MAX_ITERATION:
-                return 1
+                return ([True,n])
             else :
-                return 0
+                return ([False,n])
         if Julia == 1 :                                            # si la fractale est de type julia
             Xn = complex (cx,cy)                                   # pas la même initialisation que pour une fractale de type Mandelbrot
             n = 0
             while abs(Xn)**2 < NORME and n < MAX_ITERATION :
-                Xn = f(Xn ,c)
+                Xn = eq(Xn ,c)
                 n = n + 1
             if n == MAX_ITERATION:
-                return 1
+                return ([True,n])
             else :
-                return 0
+                return ([False,n])
 
     def get_delta(self,point, partie):
         'retourne la différence de partie réelle (real) ou imaginaire (imag)'

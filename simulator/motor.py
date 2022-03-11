@@ -15,16 +15,22 @@ class Motor :
         pg.quit()
 
     def draw_fract(self):
-        'affiche sur l écran pygame la fractale en mémoire'                    # trouver une manière de conserver les données de la fractale de manière à optimiser le temps de calcul
+        'affiche sur l écran pygame la fractale en mémoire'                   # trouver une manière de conserver les données de la fractale de manière à optimiser le temps de calcul
+        f = self.f
         size = self.size
+        screen = self.screen
+        window = pg.display.set_mode(size)
+        screen.blit(window,(0,0))
         "color = self.color"
         for y in range (size[0]):
+            print("il y a pas d erreur ici")
             for x in range (size[1]):
-                p = self.f.is_in(x,y)
-                if p == 1 :
-                    screen.set_at((x, y), (0, 0,0))
-                if p == 0 :
-                    screen.set_at((x, y), ((3 * n) % 256, (1 * n) % 256, (10 * n) % 256)) #TO DO: créer différents modes de colorisation
+                L = f.is_in(x,y)
+                print (L)
+                if L[0] == True :
+                    window.set_at((x, y), (0, 0,0))
+                if not(L[0]) == True :
+                    window.set_at((x, y), ((3 * L[1]) % 256, (1 * L[1]) % 256, (10 * L[1]) % 256)) #TO DO: créer différents modes de colorisation
                 pg.display.flip()
 
     def run(self):
