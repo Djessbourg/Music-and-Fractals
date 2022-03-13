@@ -26,7 +26,9 @@ class Fract_manager:
 
     def switch_fract(self,name):
         'change la fractale en cours'
-        self.currentfract = name
+        if self.currentfract != name :
+            self.currentfract = name
+            
 
     def eval(self,c,n):
         'évalue un point du plan complexe de la fractale en cours'

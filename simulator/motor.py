@@ -1,6 +1,8 @@
 import pygame as pg
+
 import fract
 import sound
+import inputs
 
 class Motor :
     def __init__ (self):
@@ -28,8 +30,12 @@ class Motor :
                 if L[0] == True :
                     window.set_at((x, y), (0, 0,0))
                 if not(L[0]) == True :
-                    window.set_at((x, y), ((3 * L[1]) % 256, (1 * L[1]) % 256, (10* L[1]) % 256)) #TO DO: créer différents modes de colorisation
+                    window.set_at((x, y), ((42 * L[1]) % 256, (1 * L[1]) % 256, (5* L[1]) % 256)) #TO DO: créer différents modes de colorisation
                 pg.display.flip()
+
+    def change_fract(self,name):
+        self.f.switch_fract(name)
+        self.draw_fract()
 
     def run(self):
         """Boucle principale"""
@@ -40,10 +46,9 @@ class Motor :
             # Gestion des évènements
             for event in pg.event.get():
                 if event.type == pg.QUIT: # Ferme le jeu
-                    self.restart = False
                     self.is_running = False
-                if event.type == pg.MOUSEBUTTONUP:
-                    pos = pg.mouse.get_pos()
+                elif event.type == pg.KEYDOWN :
+                    inputs.handle_key_down_event(self, event)
                     ## TODO: envoyer les coordonées dans une fonction sonore
 
         self.quit_motor() # Fermeture du jeu
