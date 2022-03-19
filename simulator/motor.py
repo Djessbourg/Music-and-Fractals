@@ -37,6 +37,12 @@ class Motor :
         self.f.switch_fract(name)
         self.draw_fract()
 
+    def delta(self,begining,point ):
+        'prend en entrée un point du plan complexe et un point d origine correspondant à la consante c pour renvoyer une différence de partie réelle et imaginaire sour forme de liste'
+        eq = self.f.get_eq()
+        y = eq(point,begining)
+        return [point.real - y.real , point.imag - y.imag]
+
     def run(self):
         """Boucle principale"""
         self.draw_fract()

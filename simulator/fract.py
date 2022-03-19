@@ -28,7 +28,7 @@ class Fract_manager:
         'change la fractale en cours'
         if self.currentfract != name :
             self.currentfract = name
-            
+
 
     def eval(self,c,n):
         'évalue un point du plan complexe de la fractale en cours'
@@ -68,15 +68,6 @@ class Fract_manager:
                 return ([True,n])
             else :
                 return ([False,n])
-
-    def get_delta(self,point, partie):
-        'retourne la différence de partie réelle (real) ou imaginaire (imag)'
-        z1 = self.eval(point)
-        z2 = self.eval(z1)
-        if partie == 'real':
-            return(pl.real(z2)-pl.real(z1))
-        elif partie == 'imag':
-            return(pl.imag(z2)-pl.imag(z1))
 
 #les fonctions get sont de type récupératrice de données
     def get_fract(self):
