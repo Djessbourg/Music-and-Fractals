@@ -16,7 +16,7 @@ class Fract:
 
 class Fract_manager:
     def __init__(self) :
-        self.currentfract = "Mandelbrot"
+        self.currentfract = "Bouglé"
         self.fracts = dict()
         self.frac_register([500,500],lambda z,c : z**2 +c ,"basic","Mandelbrot",[-2, +0.5, -1.25, +1.25],0)
         self.frac_register([500,500],lambda z,c :18*z**4 -36*z**3 -(7/3)* z**2 + c ,"basic","Bouglé",[-0.25, 0.25, -0.25, +0.25],0)
