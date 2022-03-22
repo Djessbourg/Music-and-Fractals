@@ -13,22 +13,22 @@ class Fract:
         coord : list[int]                        # positions des extremums du plan sous la form [XMIN,XMAX,YMIN,YMAX]
         julia : int                              # indique le type de fractale ( 0 = type Mandelbrot et  1 = type julia)
         c : complex                              # donne le départ d'un ensemble de julia
+        file : bool                              # indique par un booléen si la fratale possède un fichier npy dans le fichier rsc
 
 class Fract_manager:
     def __init__(self) :
         self.currentfract = "Bouglé"
         self.fracts = dict()
-        self.frac_register([500,500],lambda z,c : z**2 +c ,"basic","Mandelbrot",[-2, +0.5, -1.25, +1.25],0)
-        self.frac_register([500,500],lambda z,c :18*z**4 -36*z**3 -(7/3)* z**2 + c ,"basic","Bouglé",[-0.25, 0.25, -0.25, +0.25],0)
+        self.frac_register([500,500],lambda z,c : z**2 +c ,"basic","Mandelbrot",[-2, +0.5, -1.25, +1.25],0,True)
+        self.frac_register([500,500],lambda z,c :18*z**4 -36*z**3 -(7/3)* z**2 + c ,"basic","Bouglé",[-0.25, 0.25, -0.25, +0.25],0,True)
 
-    def frac_register(self, size, eq, color, name, coord,julia, c = complex (0,0)):
-        self.fracts[name] = Fract(size, eq, color, name, coord,julia,c)
+    def frac_register(self, size, eq, color, name, coord,julia, c = complex (0,0) , file = False):
+        self.fracts[name] = Fract(size, eq, color, name, coord,julia,c,file)
 
     def switch_fract(self,name):
         'change la fractale en cours'
         if self.currentfract != name :
             self.currentfract = name
-
 
     def eval(self,c,n):
         'évalue un point du plan complexe de la fractale en cours'
@@ -70,6 +70,7 @@ class Fract_manager:
                 return ([False,n])
 
 #les fonctions get sont de type récupératrice de données
+
     def get_fract(self):
         'récupère la fractale courante'
         return self.fracts[self.currentfract]
@@ -101,3 +102,8 @@ class Fract_manager:
     def get_c(self):
         'renvoie la valeur de c'
         return self.get_fract().c
+
+# les foncions there renvoient un booléen ( comme une question : "there is/ara smtg ?")
+
+    def there_file(self):
+        return self.get_fract().file

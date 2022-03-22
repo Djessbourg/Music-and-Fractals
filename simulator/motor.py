@@ -23,15 +23,28 @@ class Motor :
         screen = self.screen
         window = pg.display.set_mode(size)
         screen.blit(window,(0,0))
+        nmax = 100
         "color = self.color"
-        for y in range (size[0]):
-            for x in range (size[1]):
-                L = f.is_in(x,y)
-                if L[0] == True :
-                    window.set_at((x, y), (0, 0,0))
-                if not(L[0]) == True :
-                    window.set_at((x, y), ((42 * L[1]) % 256, (1 * L[1]) % 256, (5* L[1]) % 256)) #TO DO: créer différents modes de colorisation
-                pg.display.flip()
+        if not(f.there_file()) :                                              # si la fractale n'est pas prénregistrée, on fait tous les calculs
+            for y in range (size[0]):
+                for x in range (size[1]):
+                    L = f.is_in(x,y)
+                    if L[0] == True :
+                        window.set_at((x, y), (0, 0,0))
+                    if not(L[0]) == True :
+                        window.set_at((x, y), ((42 * L[1]) % 256, (1 * L[1]) % 256, (5* L[1]) % 256)) #TO DO: créer différents modes de colorisation
+                    pg.display.flip()
+        elif f.there_file() :
+            name = f.get_name()                               # si elle possède un préenregistrment alors on lit la matrice ( pas de calculs)
+            M = np.load() #TODO: retrouver la documentation pour acceder aux fichier
+            for y in range (size[0]):
+                for x in range (size[1]):
+                    n = M[x][y]
+                    if n == nmax :
+                        window.set_at((x, y), (0, 0,0))
+                    if else:
+                        window.set_at((x, y), ((42 * n) % 256, (1 * n) % 256, (5* n) % 256)) #TO DO: créer différents modes de colorisation
+                    pg.display.flip()
 
     def change_fract(self,name):
         self.f.switch_fract(name)
