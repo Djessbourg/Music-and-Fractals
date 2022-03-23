@@ -103,7 +103,8 @@ class Fract_manager:
         'renvoie la valeur de c'
         return self.get_fract().c
 
-# les foncions there renvoient un booléen ( comme une question : "there is/ara smtg ?")
+# les foncions there renvoient un booléen ( comme une question : "there is/are smtg ?")
 
     def there_file(self):
+        'revoie True (resp false) si un fichier npy de la fracalte existe (resp pas) dans rsc'
         return self.get_fract().file
