@@ -1,5 +1,4 @@
 import pygame as pg
-import pylab as pl
 import numpy as np
 from dataclasses import dataclass
 from typing import Callable # on en a besoin dans la dataclass pour insrire une fonction

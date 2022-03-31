@@ -42,7 +42,7 @@ class Motor :
                     n = M[x][y]
                     if n == nmax :
                         window.set_at((x, y), (0, 0,0))
-                    if else:
+                    else:
                         window.set_at((x, y), ((42 * n) % 256, (1 * n) % 256, (5* n) % 256)) #TO DO: créer différents modes de colorisation
                     pg.display.flip()
 
