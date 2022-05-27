@@ -33,7 +33,6 @@ class Motor :
                         window.set_at((x, y), (0, 0,0))
                     if not(L[0]) == True :
                         window.set_at((x, y), ((42 * L[1]) % 256, (1 * L[1]) % 256, (5* L[1]) % 256)) #TO DO: créer différents modes de colorisation
-                    pg.display.flip()
         elif f.there_file() :
             name = f.get_name()                               # si elle possède un préenregistrment alors on lit la matrice ( pas de calculs)
             M = np.load() #TODO: retrouver la documentation pour acceder aux fichier
@@ -44,11 +43,11 @@ class Motor :
                         window.set_at((x, y), (0, 0,0))
                     else:
                         window.set_at((x, y), ((42 * n) % 256, (1 * n) % 256, (5* n) % 256)) #TO DO: créer différents modes de colorisation
-                    pg.display.flip()
 
     def change_fract(self,name):
         self.f.switch_fract(name)
         self.draw_fract()
+        pg.display.flip()
 
     def delta(self,begining,point ):
         'prend en entrée un point du plan complexe et un point d origine correspondant à la consante c pour renvoyer une différence de partie réelle et imaginaire sour forme de liste'
@@ -59,6 +58,7 @@ class Motor :
     def run(self):
         """Boucle principale"""
         self.draw_fract()
+        pg.display.flip()
         self.is_running = True
 
         while self.is_running:
