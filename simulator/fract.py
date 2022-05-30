@@ -16,14 +16,30 @@ class Fract:
 
 class Fract_manager:
     def __init__(self) :
-        self.currentfract = "Nolan"
+        self.currentfract = "zigouigoui"
         self.fracts = dict()
-        self.frac_register([500,500],lambda z,c : z**2 +c ,"basic","Mandelbrot",[-2, +0.5, -1.25, +1.25],0,True)
-        self.frac_register([500,500],lambda z,c :18*z**4 -36*z**3 -(7/3)* z**2 + c ,"basic","Bouglé",[-0.25, 0.25, -0.25, +0.25],0,True)
-        self.frac_register([500,500], lambda z,c : 19*z**3 + 20*z**5 + c ,"basic", "Nolan", [-0.5, +0.5, -0.5, +0.5],0,True )
+        self.colors = dict()
+        #implémentation de fractales
+        #self.frac_register([500,500],lambda z,c : z**2 +c ,"ew","Mandelbrot",[-2, +0.5, -1.25, +1.25],0,True)
+        #self.frac_register([500,500],lambda z,c :18*z**4 -36*z**3 -(7/3)* z**2 + c ,"hard red","Bouglé",[-0.25, 0.25, -0.25, +0.25],0,True)
+        #self.frac_register([500,500], lambda z,c : 19*z**3 + 20*z**5 + c ,"purple", "Nolan", [-0.5, +0.5, -0.5, +0.5],0,True )
+        #self.frac_register([500,500], lambda z,c : np.cos(z)+np.cos(2*z)*1j- np.cos(3*z)- np.cos(4*z)*1j+c ,"hard blue", "Horgues", [-0.25, +0.25, -0.25, +0.25],0,True )
+        self.frac_register([500,500],lambda z,c : (np.tan(z**2)+np.cos(2*z))/(abs(z**2-1)+1) ,"ew","zigouigoui",[-5, +5, -5, +5],0,True)
+        #implémentation de couleur
+        self.color_register("basic",70,70,70)
+        self.color_register("purple",3,1,10)
+        self.color_register("ew",16,32,64)
+        self.color_register("black",2,3,5)
+        self.color_register("light black",3,5,8)
+        self.color_register("blue",1,2,21)
+        self.color_register("hard blue",1,2,42)
+        self.color_register("hard red",42,1,5)
 
     def frac_register(self, size, eq, color, name, coord,julia, c = complex (0,0) , file = False):
         self.fracts[name] = Fract(size, eq, color, name, coord,julia,c,file)
+
+    def color_register(self,color,r,g,b):
+        self.colors[color] = [r,g,b]
 
     def switch_fract(self,name):
         'change la fractale en cours'
@@ -86,6 +102,9 @@ class Fract_manager:
     def get_color(self):
         'renvoie le mode de couleur de la fractale en cours'
         return self.get_fract().color
+
+    def get_rgblist(self):
+        return self.colors[self.get_color()]
 
     def get_size(self):
         'renvoie la taille de la fenètre de la fractale en cours'
