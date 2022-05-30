@@ -20,11 +20,10 @@ class Fract_manager:
         self.fracts = dict()
         self.colors = dict()
         #implémentation de fractales
-        #self.frac_register([500,500],lambda z,c : z**2 +c ,"ew","Mandelbrot",[-2, +0.5, -1.25, +1.25],0,True)
-        #self.frac_register([500,500],lambda z,c :18*z**4 -36*z**3 -(7/3)* z**2 + c ,"hard red","Bouglé",[-0.25, 0.25, -0.25, +0.25],0,True)
-        #self.frac_register([500,500], lambda z,c : 19*z**3 + 20*z**5 + c ,"purple", "Nolan", [-0.5, +0.5, -0.5, +0.5],0,True )
-        #self.frac_register([500,500], lambda z,c : np.cos(z)+np.cos(2*z)*1j- np.cos(3*z)- np.cos(4*z)*1j+c ,"hard blue", "Horgues", [-0.25, +0.25, -0.25, +0.25],0,True )
-        self.frac_register([500,500],lambda z,c : (np.tan(z**2)+np.cos(2*z))/(abs(z**2-1)+1) ,"ew","zigouigoui",[-5, +5, -5, +5],0,True)
+        self.frac_register([500,500],lambda z,c : z**2 +c ,"ew","Mandelbrot",[-2, +0.5, -1.25, +1.25],0,True)
+        self.frac_register([500,500],lambda z,c :18*z**4 -36*z**3 -(7/3)* z**2 + c ,"hard red","Bouglé",[-0.25, 0.25, -0.25, +0.25],0,True)
+        self.frac_register([500,500], lambda z,c : 19*z**3 + 20*z**5 + c ,"purple", "Nolan", [-0.5, +0.5, -0.5, +0.5],0,True )
+        self.frac_register([500,500], lambda z,c : np.cos(z)+np.cos(2*z)*1j- np.cos(3*z)- np.cos(4*z)*1j+c ,"hard blue", "Horgues", [-0.25, +0.25, -0.25, +0.25],0,True )
         #implémentation de couleur
         self.color_register("basic",70,70,70)
         self.color_register("purple",3,1,10)

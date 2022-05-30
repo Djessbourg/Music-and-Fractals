@@ -9,9 +9,7 @@ def handle_key_down_event(motor, event):
         motor.change_fract("Nolan")
     if event.key == pg.K_r :
         motor.change_fract("Horgues")
-    if event.key == pg.K_t :
-        motor.change_fract("zigouigoui")
-        
+
     if event.key == "MOUSEBUTTONUP":
         pos = pg.mouse.get_pos()
         # faire la conversion des coordonées en un point du plan complexe
