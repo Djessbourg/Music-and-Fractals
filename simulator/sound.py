@@ -17,7 +17,7 @@ class Sound:
         sound = pg.sndarray.make_sound(sound.copy())
         sound.play()
 
-from pyo import *
+#from pyo import *
 '''
 s = Server().boot()
 s.amp = 0.1

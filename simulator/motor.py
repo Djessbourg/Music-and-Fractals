@@ -17,7 +17,7 @@ class Motor :
         """Ferme le simulateur"""
         pg.quit()
 
-    def draw_fract(self,Coords=[]):
+    def draw_fract(self,Coords=[],zoom = 0):
         'affiche sur l écran pygame la fractale en mémoire'             
         f = self.f
         size = self.size
@@ -29,7 +29,7 @@ class Motor :
         if not(f.there_file()) :                                              # si la fractale n'est pas prénregistrée, on fait tous les calculs
             for y in range (size[0]):
                 for x in range (size[1]):
-                    L = f.is_in(x,y,Coords)
+                    L = f.is_in(x,y,Coords,zoom)
                     if L[0] == True :
                         window.set_at((x, y), (0, 0,0))
                     if not(L[0]) == True :
@@ -52,33 +52,36 @@ class Motor :
 
     def move_fract(self,dir,k=0.1):
         Coords = self.f.get_coord()
+        zoom = 0
         dx = Coords[1]-Coords[0]
         dy = Coords[3]-Coords[2]
         if dir == 'up':
             Coords[2],Coords[3] = Coords[2]+k*dy,Coords[3]+k*dy
-            self.draw_fract(Coords)
+            self.draw_fract(Coords,zoom)
             pg.display.flip()
         elif dir == 'down':
             Coords[2],Coords[3] = Coords[2]-k*dy,Coords[3]-k*dy
-            self.draw_fract(Coords)
+            self.draw_fract(Coords,zoom)
             pg.display.flip()
         elif dir == 'left':
             Coords[0],Coords[1] = Coords[0]-k*dx,Coords[1]-k*dx
-            self.draw_fract(Coords)
+            self.draw_fract(Coords,zoom)
             pg.display.flip()
         elif dir == 'right':
             Coords[0],Coords[1] = Coords[0]+k*dx,Coords[1]+k*dx
-            self.draw_fract(Coords)
+            self.draw_fract(Coords,zoom)
             pg.display.flip()
         elif dir == 'forward':
             Coords[0],Coords[1] = Coords[0]+k*dx,Coords[1]-k*dx
             Coords[2],Coords[3] = Coords[2]+k*dy,Coords[3]-k*dy
-            self.draw_fract(Coords)
+            zoom += 1
+            self.draw_fract(Coords,zoom)
             pg.display.flip()
         elif dir == 'backward':
             Coords[0],Coords[1] = Coords[0]-k*dx,Coords[1]+k*dx
             Coords[2],Coords[3] = Coords[2]-k*dy,Coords[3]+k*dy
-            self.draw_fract(Coords)
+            zoom -= 1
+            self.draw_fract(Coords,zoom)
             pg.display.flip()
 
     def delta(self,begining,point ):

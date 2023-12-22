@@ -42,8 +42,8 @@ class Fract_manager:
         self.color_register("hard blue",1,2,42)
         self.color_register("hard red",42,1,5)
 
-    def frac_register(self, size, eq, color, name, coord,julia, c = complex (0,0) , file = False, Zoom = 0):
-        self.fracts[name] = Fract(size, eq, color, name, coord,julia,c,file)
+    def frac_register(self, size, eq, color, name, coord,julia, c = complex (0,0) , file = False, zoom = 0):
+        self.fracts[name] = Fract(size, eq, color, name, coord,julia,c,file,zoom)
 
     def color_register(self,color,r,g,b):
         self.colors[color] = [r,g,b]
@@ -61,10 +61,14 @@ class Fract_manager:
         else :
             return eq(eval(c,n-1),c)
 
-    def is_in(self,x,y,coords=[],MAX_ITERATION = 20, NORME = 4):
+    def is_in(self,x,y,coords=[],MAX_ITERATION = 20, NORME = 4, zoom = 0):
         'détermine si un point de coordonées pygame x y est dans la partie convergente de la fractale'
         Julia = self.get_julia()
         eq = self.get_eq()
+        if zoom == 0:
+            Z = self.get_zoom()
+        else:
+            Z = zoom
         if coords==[]:                                             # s'applique quand on veut modifier l'origine et le zoom
             C = self.get_coord()
         else:
@@ -77,7 +81,7 @@ class Fract_manager:
             c = complex (cx,cy)
             Xn = complex(0,0)
             n = 0
-            while abs(Xn)**2 < NORME and n < MAX_ITERATION :
+            while abs(Xn)**2 < NORME and n < MAX_ITERATION + Z :
                 Xn = eq(Xn ,c)
                 n = n + 1
             if n == MAX_ITERATION:
@@ -87,10 +91,10 @@ class Fract_manager:
         if Julia == 1 :                                            # si la fractale est de type julia
             Xn = complex (cx,cy)                                   # pas la même initialisation que pour une fractale de type Mandelbrot
             n = 0
-            while abs(Xn)**2 < NORME and n < MAX_ITERATION :
+            while abs(Xn)**2 < NORME and n < MAX_ITERATION + Z :
                 Xn = eq(Xn ,c)
                 n = n + 1
-            if n == MAX_ITERATION:
+            if n == MAX_ITERATION + Z :
                 return ([True,n])
             else :
                 return ([False,n])
