@@ -16,15 +16,22 @@ class Fract:
 
 class Fract_manager:
     def __init__(self) :
-        self.currentfract = "zigouigoui"
+        self.currentfract = "Burning"
         self.fracts = dict()
         self.colors = dict()
+        
         #implémentation de fractales
-        self.frac_register([500,500],lambda z,c : z**2 +c ,"ew","Mandelbrot",[-2, +0.5, -1.25, +1.25],0,True)
-        self.frac_register([500,500],lambda z,c :18*z**4 -36*z**3 -(7/3)* z**2 + c ,"hard red","Bouglé",[-0.25, 0.25, -0.25, +0.25],0,True)
-        self.frac_register([500,500], lambda z,c : 19*z**3 + 20*z**5 + c ,"purple", "Nolan", [-0.5, +0.5, -0.5, +0.5],0,True )
-        self.frac_register([500,500], lambda z,c : np.cos(z)+np.cos(2*z)*1j- np.cos(3*z)- np.cos(4*z)*1j+c ,"hard blue", "Horgues", [-0.25, +0.25, -0.25, +0.25],0,True )
+
+        self.frac_register([700,700],lambda z,c : z**2 +c ,"hard red","Mandelbrot",[-2, +0.5, -1.25, +1.25],0,True)
+        self.frac_register([700,700],lambda z,c :18*z**4 -36*z**3 -(7/3)* z**2 + c ,"hard red","Bouglé",[-0.25, 0.25, -0.25, +0.25],0,True)
+        self.frac_register([700,700], lambda z,c : 19*z**3 + 20*z**5 + c ,"blue", "Nolan", [-0.5, +0.5, -0.5, +0.5],0,False )
+        self.frac_register([700,700], lambda z,c : np.cos(z)+np.cos(2*z)*1j- np.cos(3*z)- np.cos(4*z)*1j+c ,"hard blue", "Horgues", [-0.25, +0.25, -0.25, +0.25],0,False)
+        self.frac_register([700,700],lambda z,c :(z+z**2)**2 + c ,"hard red","Djessy",[-2, 0.5, -1.25, +1.25],0,False)
+        self.frac_register([700,700],lambda z,c :z**4 + z**2 + c ,"hard red","DjessyBis",[-1.5, 1.5, -1.5, +1.5],0,False)
+        self.frac_register([700,700],lambda z,c : (complex(abs(z.real), abs(z.imag)))**2 + c ,"hard red","Burning",[-1.80, -1.65, -0.075, +0.075],0,False)
+
         #implémentation de couleur
+
         self.color_register("basic",70,70,70)
         self.color_register("purple",3,1,10)
         self.color_register("ew",16,32,64)
@@ -53,11 +60,14 @@ class Fract_manager:
         else :
             return eq(eval(c,n-1),c)
 
-    def is_in(self,x,y,MAX_ITERATION = 20, NORME = 4):
+    def is_in(self,x,y,coords=[],MAX_ITERATION = 20, NORME = 4):
         'détermine si un point de coordonées pygame x y est dans la partie convergente de la fractale'
         Julia = self.get_julia()
         eq = self.get_eq()
-        C = self.get_coord()
+        if coords==[]:                                             # s'applique quand on veut modifier l'origine et le zoom
+            C = self.get_coord()
+        else:
+            C = coords
         S = self.get_size()
         c = self.get_c()
         cx = C[0] + (x/S[0]) * (C[1] - C[0])
