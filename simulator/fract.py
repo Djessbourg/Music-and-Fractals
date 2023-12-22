@@ -13,6 +13,7 @@ class Fract:
         julia : int                              # indique le type de fractale ( 0 = type Mandelbrot et  1 = type julia)
         c : complex                              # donne le départ d'un ensemble de julia
         file : bool                              # indique par un booléen si la fratale possède un fichier npy dans le fichier rsc
+        zoom : int                               # 0 au lancement, sert de référence au zoom appliquer pour adapter la résolution 
 
 class Fract_manager:
     def __init__(self) :
@@ -22,13 +23,13 @@ class Fract_manager:
         
         #implémentation de fractales
 
-        self.frac_register([700,700],lambda z,c : z**2 +c ,"hard red","Mandelbrot",[-2, +0.5, -1.25, +1.25],0,True)
-        self.frac_register([700,700],lambda z,c :18*z**4 -36*z**3 -(7/3)* z**2 + c ,"hard red","Bouglé",[-0.25, 0.25, -0.25, +0.25],0,True)
-        self.frac_register([700,700], lambda z,c : 19*z**3 + 20*z**5 + c ,"blue", "Nolan", [-0.5, +0.5, -0.5, +0.5],0,False )
-        self.frac_register([700,700], lambda z,c : np.cos(z)+np.cos(2*z)*1j- np.cos(3*z)- np.cos(4*z)*1j+c ,"hard blue", "Horgues", [-0.25, +0.25, -0.25, +0.25],0,False)
-        self.frac_register([700,700],lambda z,c :(z+z**2)**2 + c ,"hard red","Djessy",[-2, 0.5, -1.25, +1.25],0,False)
-        self.frac_register([700,700],lambda z,c :z**4 + z**2 + c ,"hard red","DjessyBis",[-1.5, 1.5, -1.5, +1.5],0,False)
-        self.frac_register([700,700],lambda z,c : (complex(abs(z.real), abs(z.imag)))**2 + c ,"hard red","Burning",[-1.80, -1.65, -0.075, +0.075],0,False)
+        self.frac_register([700,700],lambda z,c : z**2 +c ,"hard red","Mandelbrot",[-2, +0.5, -1.25, +1.25],0,True,0)
+        self.frac_register([700,700],lambda z,c :18*z**4 -36*z**3 -(7/3)* z**2 + c ,"hard red","Bouglé",[-0.25, 0.25, -0.25, +0.25],0,True,0)
+        self.frac_register([700,700], lambda z,c : 19*z**3 + 20*z**5 + c ,"blue", "Nolan", [-0.5, +0.5, -0.5, +0.5],0,False,0)
+        self.frac_register([700,700], lambda z,c : np.cos(z)+np.cos(2*z)*1j- np.cos(3*z)- np.cos(4*z)*1j+c ,"hard blue", "Horgues", [-0.25, +0.25, -0.25, +0.25],0,False,0)
+        self.frac_register([700,700],lambda z,c :(z+z**2)**2 + c ,"hard red","Djessy",[-2, 0.5, -1.25, +1.25],0,False,0)
+        self.frac_register([700,700],lambda z,c :z**4 + z**2 + c ,"hard red","DjessyBis",[-1.5, 1.5, -1.5, +1.5],0,False,0)
+        self.frac_register([700,700],lambda z,c : (complex(abs(z.real), abs(z.imag)))**2 + c ,"hard red","Burning",[-1.80, -1.65, -0.075, +0.075],0,False,0)
 
         #implémentation de couleur
 
@@ -41,7 +42,7 @@ class Fract_manager:
         self.color_register("hard blue",1,2,42)
         self.color_register("hard red",42,1,5)
 
-    def frac_register(self, size, eq, color, name, coord,julia, c = complex (0,0) , file = False):
+    def frac_register(self, size, eq, color, name, coord,julia, c = complex (0,0) , file = False, Zoom = 0):
         self.fracts[name] = Fract(size, eq, color, name, coord,julia,c,file)
 
     def color_register(self,color,r,g,b):
@@ -130,6 +131,10 @@ class Fract_manager:
     def get_c(self):
         'renvoie la valeur de c'
         return self.get_fract().c
+    
+    def get_zoom(self):
+        'renvoie la valeur de zoom'
+        return self.get_fract().zoom
 
 # les foncions there renvoient un booléen ( comme une question : "there is/are smtg ?")
 
