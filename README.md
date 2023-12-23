@@ -1,8 +1,11 @@
 THIS READ ME IS IN FRENCH (AND WILL BE SOON TRANSLATED TO ENGLISH)
 
-Ce document vous permet dans un premier temps de générér des fractales à partir de holomorphismes. Je vous présente la prise en main : 
+Ce document vous permet dans un premier temps de générér des fractales à partir de holomorphismes. Je vous présente la prise en main :
+
 -Lorsque vous lancer le fichier main.py pour la première fois, vous tombez sur l'ensemble de Mandelbrot avec des nuances rouges.
+
 -Pour naviguer dans cet espace vous pouver utiliser les flèches directionnelles de votre clavier et vous pouvez effectuer des zooms avec les touches "+" et "-".
+
 -Vous pouvez changer de fractales avec les touches a z e r t y u (toutes ont des fractales préenregistrées)
 
 Pour ceux qui veulent bidouiller:
