@@ -8,7 +8,7 @@ Ce document vous permet dans un premier temps de générér des fractales à par
 Pour ceux qui veulent bidouiller:
 
 Ajouter une fractale:
- Rendez-vous dans le fichier fract.py 
+ Rendez-vous dans le fichier fract.py /n
  Vous pouvez inmplémenter vos fractales à partir de la ligne 24 en jouant sur différents arguments:
    * Size : la taille de la fenetre en pixel qui s'écrit comme une liste
    * eq : la fonction complexe associée à votre fractale (s'écrit sous la nomenclature lambda z,c: ...)
