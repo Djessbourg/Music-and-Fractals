@@ -25,8 +25,8 @@ class Fract_manager:
 
         self.frac_register([700,700],lambda z,c : z**2 +c ,"hard red","Mandelbrot",[-2, +0.5, -1.25, +1.25],0,True,0)
         self.frac_register([700,700],lambda z,c :18*z**4 -36*z**3 -(7/3)* z**2 + c ,"hard red","Bouglé",[-0.25, 0.25, -0.25, +0.25],0,True,0)
-        self.frac_register([700,700], lambda z,c : 19*z**3 + 20*z**5 + c ,"blue", "Nolan", [-0.5, +0.5, -0.5, +0.5],0,False,0)
-        self.frac_register([700,700], lambda z,c : np.cos(z)+np.cos(2*z)*1j- np.cos(3*z)- np.cos(4*z)*1j+c ,"hard blue", "Horgues", [-0.25, +0.25, -0.25, +0.25],0,False,0)
+        self.frac_register([700,700],lambda z,c : 19*z**3 + 20*z**5 + c ,"blue", "Nolan", [-0.5, +0.5, -0.5, +0.5],0,False,0)
+        self.frac_register([700,700],lambda z,c : np.cos(z)+np.cos(2*z)*1j- np.cos(3*z)- np.cos(4*z)*1j+c ,"hard blue", "Horgues", [-0.25, +0.25, -0.25, +0.25],0,False,0)
         self.frac_register([700,700],lambda z,c :(z+z**2)**2 + c ,"hard red","Djessy",[-2, 0.5, -1.25, +1.25],0,False,0)
         self.frac_register([700,700],lambda z,c :z**4 + z**2 + c ,"hard red","DjessyBis",[-1.5, 1.5, -1.5, +1.5],0,False,0)
         self.frac_register([700,700],lambda z,c : (complex(abs(z.real), abs(z.imag)))**2 + c ,"hard red","Burning",[-1.80, -1.65, -0.075, +0.075],0,False,0)
