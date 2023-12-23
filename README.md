@@ -8,8 +8,8 @@ Ce document vous permet dans un premier temps de générér des fractales à par
 Pour ceux qui veulent bidouiller:
 
 Ajouter une fractale:
--Rendez-vous dans le fichier fract.py 
--Vous pouvez inmplémenter vos fractales à partir de la ligne 24 en jouant sur différents arguments:
+Rendez-vous dans le fichier fract.py 
+Vous pouvez inmplémenter vos fractales à partir de la ligne 24 en jouant sur différents arguments:
   * Size : la taille de la fenetre en pixel qui s'écrit comme une liste
   * eq : la fonction complexe associée à votre fractale (s'écrit sous la nomenclature lambda z,c: ...)
   * color : une chaîne de caractères associer à un dictionaire de couleur ("basic","purple,"ew","black","light black","blue","hard blue","hard red"). Ce dictionaire peut être enrichie
@@ -20,4 +20,4 @@ Ajouter une fractale:
   * c : nombre complex de départ pour un enxemble de Julia
   * file : indique par un booléen si la fratale possède un fichier npy dans le fichier rsc (fonctionalité par encore au point)
   * zoom : 0 par défault, indique le zoom initial appliqué
--Vous pouvez modifier la fractale affichée au lancement du programe en modifiant à la ligne 20 le nom de la fractale pour self.currentfract
+Vous pouvez modifier la fractale affichée au lancement du programe en modifiant à la ligne 20 le nom de la fractale pour self.currentfract
