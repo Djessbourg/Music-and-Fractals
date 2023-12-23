@@ -20,4 +20,5 @@ Vous pouvez inmplémenter vos fractales à partir de la ligne 24 en jouant sur d
   * c : nombre complex de départ pour un enxemble de Julia
   * file : indique par un booléen si la fratale possède un fichier npy dans le fichier rsc (fonctionalité par encore au point)
   * zoom : 0 par défault, indique le zoom initial appliqué
+
 Vous pouvez modifier la fractale affichée au lancement du programe en modifiant à la ligne 20 le nom de la fractale pour self.currentfract
