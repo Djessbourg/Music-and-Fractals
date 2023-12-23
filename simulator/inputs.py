@@ -13,6 +13,8 @@ def handle_key_down_event(motor, event):
         motor.change_fract("Djessy")
     if event.key == pg.K_y :
         motor.change_fract("DjessyBis")
+    if event.key == pg.K_u:
+        motor.change_fract("Burning")
     if event.key == pg.K_UP:
         motor.move_fract('up')
     if event.key == pg.K_DOWN:

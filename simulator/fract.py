@@ -61,7 +61,7 @@ class Fract_manager:
         else :
             return eq(eval(c,n-1),c)
 
-    def is_in(self,x,y,coords=[],MAX_ITERATION = 20, NORME = 4, zoom = 0):
+    def is_in(self, x, y, coords=[], zoom = 0, MAX_ITERATION = 30, NORME = 4, zoomcoef = 5):
         'détermine si un point de coordonées pygame x y est dans la partie convergente de la fractale'
         Julia = self.get_julia()
         eq = self.get_eq()
@@ -81,20 +81,20 @@ class Fract_manager:
             c = complex (cx,cy)
             Xn = complex(0,0)
             n = 0
-            while abs(Xn)**2 < NORME and n < (MAX_ITERATION + Z) :
+            while abs(Xn)**2 < NORME and n < (MAX_ITERATION + Z*zoomcoef) :
                 Xn = eq(Xn ,c)
                 n = n + 1
-            if n == (MAX_ITERATION + Z):
+            if n == (MAX_ITERATION + Z*zoomcoef):
                 return ([True,n])
             else :
                 return ([False,n])
         if Julia == 1 :                                            # si la fractale est de type julia
             Xn = complex (cx,cy)                                   # pas la même initialisation que pour une fractale de type Mandelbrot
             n = 0
-            while abs(Xn)**2 < NORME and n < (MAX_ITERATION + Z):
+            while abs(Xn)**2 < NORME and n < (MAX_ITERATION + Z*zoomcoef):
                 Xn = eq(Xn ,c)
                 n = n + 1
-            if n == (MAX_ITERATION + Z) :
+            if n == (MAX_ITERATION + Z*zoomcoef) :
                 return ([True,n])
             else :
                 return ([False,n])

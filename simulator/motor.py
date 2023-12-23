@@ -50,7 +50,7 @@ class Motor :
         self.draw_fract()
         pg.display.flip()
 
-    def move_fract(self,dir,k=0.1):
+    def move_fract(self,dir,k=0.1,kz=0.4):
         Coords = self.f.get_coord()
         zoom = 0
         dx = Coords[1]-Coords[0]
@@ -72,15 +72,25 @@ class Motor :
             self.draw_fract(Coords,zoom)
             pg.display.flip()
         elif dir == 'forward':
-            Coords[0],Coords[1] = Coords[0]+k*dx,Coords[1]-k*dx
-            Coords[2],Coords[3] = Coords[2]+k*dy,Coords[3]-k*dy
-            zoom += 1
+            Coords[0],Coords[1] = Coords[0]+kz*dx,Coords[1]-kz*dx
+            Coords[2],Coords[3] = Coords[2]+kz*dy,Coords[3]-kz*dy
+            if zoom == 0 :
+                zoom = 2
+            elif zoom == -2:
+                zoom = 0
+            else :
+                zoom = 2*zoom
             self.draw_fract(Coords,zoom)
             pg.display.flip()
         elif dir == 'backward':
-            Coords[0],Coords[1] = Coords[0]-k*dx,Coords[1]+k*dx
-            Coords[2],Coords[3] = Coords[2]-k*dy,Coords[3]+k*dy
-            zoom -= 1
+            Coords[0],Coords[1] = Coords[0]-kz*dx,Coords[1]+kz*dx
+            Coords[2],Coords[3] = Coords[2]-kz*dy,Coords[3]+kz*dy
+            if zoom == 0:
+                zoom = -2
+            elif zoom == 2:
+                zoom = 0
+            else :
+                zoom = zoom/2
             self.draw_fract(Coords,zoom)
             pg.display.flip()
 
