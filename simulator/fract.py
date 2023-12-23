@@ -9,7 +9,7 @@ class Fract:
         eq : Callable[[complex,complex],complex] # hollomorphisme à deux entrées
         color : str                              # couleurs de la carte d'affichage
         name : str                               # nom de la fractale
-        coord : list[int]                        # positions des extremums du plan sous la form [XMIN,XMAX,YMIN,YMAX]
+        coord : list[int]                        # positions des extremums du plan sous la forme [XMIN,XMAX,YMIN,YMAX]
         julia : int                              # indique le type de fractale ( 0 = type Mandelbrot et  1 = type julia)
         c : complex                              # donne le départ d'un ensemble de julia
         file : bool                              # indique par un booléen si la fratale possède un fichier npy dans le fichier rsc
