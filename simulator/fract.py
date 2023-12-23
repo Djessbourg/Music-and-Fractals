@@ -13,11 +13,11 @@ class Fract:
         julia : int                              # indique le type de fractale ( 0 = type Mandelbrot et  1 = type julia)
         c : complex                              # donne le départ d'un ensemble de julia
         file : bool                              # indique par un booléen si la fratale possède un fichier npy dans le fichier rsc
-        zoom : int                               # 0 au lancement, sert de référence au zoom appliquer pour adapter la résolution 
+        zoom : int                               # 0 au lancement, sert de référence au zoom appliqué pour adapter la résolution 
 
 class Fract_manager:
     def __init__(self) :
-        self.currentfract = "Burning"
+        self.currentfract = "Mandelbrot"
         self.fracts = dict()
         self.colors = dict()
         
@@ -81,20 +81,20 @@ class Fract_manager:
             c = complex (cx,cy)
             Xn = complex(0,0)
             n = 0
-            while abs(Xn)**2 < NORME and n < MAX_ITERATION + Z :
+            while abs(Xn)**2 < NORME and n < (MAX_ITERATION + Z) :
                 Xn = eq(Xn ,c)
                 n = n + 1
-            if n == MAX_ITERATION:
+            if n == (MAX_ITERATION + Z):
                 return ([True,n])
             else :
                 return ([False,n])
         if Julia == 1 :                                            # si la fractale est de type julia
             Xn = complex (cx,cy)                                   # pas la même initialisation que pour une fractale de type Mandelbrot
             n = 0
-            while abs(Xn)**2 < NORME and n < MAX_ITERATION + Z :
+            while abs(Xn)**2 < NORME and n < (MAX_ITERATION + Z):
                 Xn = eq(Xn ,c)
                 n = n + 1
-            if n == MAX_ITERATION + Z :
+            if n == (MAX_ITERATION + Z) :
                 return ([True,n])
             else :
                 return ([False,n])
