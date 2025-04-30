@@ -20,7 +20,7 @@ Ajouter une fractale:
    * name : une chaine de caractère nomant votre fractale
    * coord : positions des extremums du plan sous la forme [XMIN,XMAX,YMIN,YMAX]
    * julia : entier indiquant le type de fractale ( 0 = type Mandelbrot et  1 = type julia)
-   * c : nombre complex de départ pour un enxemble de Julia
+   * c : nombre complex de départ pour un ensemble de Julia
    * file : indique par un booléen si la fratale possède un fichier npy dans le fichier rsc (fonctionalité par encore au point)
    * zoom : 0 par défault, indique le zoom initial appliqué 
 
